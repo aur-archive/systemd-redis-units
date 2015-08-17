@@ -1,0 +1,22 @@
+post_install() {
+cat << EOF
+
+==> !!! IMPORTANT !!! Change "daemonize" in /etc/redis.conf to "no"
+
+==> Remove redis entry in rc.conf
+
+==> To start redis use this commands as root :
+	systemctl start redis.service
+
+==> To enable it on boot :
+	systemctl enable redis.service
+
+==> If redis doesn't start, reload systemd with this command :
+	systemctl --system daemon-reload
+
+
+EOF
+}
+post_upgrade() {
+	post_install
+}
